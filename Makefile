@@ -12,7 +12,7 @@ docker.build.%: .docker.build.%
 	@printf ''
 
 .PRECIOUS: .docker.build.%
-.docker.build.%: core_variables.tf Dockerfile main.%.tf outputs.tf variables.%.tf
+.docker.build.%: core_variables.tf Dockerfile main.%.tf outputs.tf terraform-wrapper.sh variables.%.tf
 	@docker build --build-arg PROVIDER=$* -t mesosphere/dcos-terraform-$*:v$(DCOS_MODULE_VERSION_$*) .
 	@touch $@
 

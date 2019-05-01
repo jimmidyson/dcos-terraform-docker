@@ -19,4 +19,5 @@ RUN terraform init -get=true -get-plugins=true
 
 RUN chmod -R 777 /dcos-terraform ${TF_PLUGIN_CACHE_DIR}
 
-ENV TF_CLI_ARGS_init "-get=false -get-plugins=false -plugin-dir=/var/lib/terraform/plugin-cache"
+COPY terraform-wrapper.sh /terraform-wrapper.sh
+ENTRYPOINT ["/terraform-wrapper.sh"]
