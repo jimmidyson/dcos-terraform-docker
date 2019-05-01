@@ -6,7 +6,7 @@ dcos_version = "1.12.3"
 
 dcos_variant = "ee"
 
-dcos_ee_license_file = "/PATH/TO/DCOS_EE_LICENSE_FILE.txt"
+dcos_license_key_file = "/PATH/TO/DCOS_EE_LICENSE_FILE.txt"
 
 dcos_security = "strict"
 

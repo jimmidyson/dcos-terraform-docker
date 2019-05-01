@@ -1,37 +1,157 @@
-variable "gcp_credentials" {
-  description = "Either the path to or the contents of a service account key file in JSON format. You can manage key files using the Cloud Console."
+variable "cluster_name" {
+  description = "Name of the DC/OS cluster"
+  default     = "dcos-example"
+}
+
+variable "ssh_public_key" {
+  description = "SSH public key in authorized keys format (e.g. 'ssh-rsa ..') to be used with the instances. Make sure you added this key to your ssh-agent."
+
+  default = ""
+}
+
+variable "ssh_public_key_file" {
+  description = "Path to SSH public key. This is mandatory but can be set to an empty string if you want to use ssh_public_key with the key as string."
+}
+
+variable "num_masters" {
+  description = "Specify the amount of masters. For redundancy you should have at least 3"
+  default     = 3
+}
+
+variable "num_private_agents" {
+  description = "Specify the amount of private agents. These agents will provide your main resources"
+  default     = 2
+}
+
+variable "num_public_agents" {
+  description = "Specify the amount of public agents. These agents will host marathon-lb and edgelb"
+  default     = 0
+}
+
+variable "labels" {
+  description = "Add custom labels to all resources"
+  type        = "map"
+  default     = {}
+}
+
+variable "admin_ips" {
+  description = "List of CIDR admin IPs (comma separated string)"
   default     = ""
 }
 
-variable "gcp_project" {
-  description = "The default project to manage resources in. If another project is specified on a resource, it will take precedence."
+variable "availability_zones" {
+  type        = "list"
+  description = "Availability zones to be used"
+  default     = []
 }
 
-variable "gcp_region" {
-  description = "The default region to manage resources in. If another region is specified on a regional resource, it will take precedence."
+variable "dcos_instance_os" {
+  description = "Operating system to use. Instead of using your own AMI you could use a provided OS."
+
+  default = "centos_7.5"
 }
 
-variable "gcp_zone" {
-  description = "The default zone to manage resources in. Generally, this zone should be within the default region you specified. If another zone is specified on a zonal resource, it will take precedence."
+variable "bootstrap_gcp_image" {
+  description = "[BOOTSTRAP] Image to be used"
   default     = ""
+}
+
+variable "bootstrap_os" {
+  description = "[BOOTSTRAP] Operating system to use. Instead of using your own AMI you could use a provided OS."
+  default     = ""
+}
+
+variable "bootstrap_root_volume_size" {
+  description = "[BOOTSTRAP] Root volume size in GB"
+  default     = "80"
+}
+
+variable "bootstrap_root_volume_type" {
+  description = "[BOOTSTRAP] Root volume type"
+  default     = "pd-standard"
 }
 
 variable "bootstrap_machine_type" {
   description = "[BOOTSTRAP] Machine type"
-  default     = "n1-standard-1"
+  default     = "n1-standard-2"
 }
 
-variable "master_machine_type" {
+variable "masters_gcp_image" {
+  description = "[MASTERS] Image to be used"
+  default     = ""
+}
+
+variable "masters_os" {
+  description = "[MASTERS] Operating system to use. Instead of using your own AMI you could use a provided OS."
+  default     = ""
+}
+
+variable "masters_root_volume_size" {
+  description = "[MASTERS] Root volume size in GB"
+  default     = "120"
+}
+
+variable "masters_machine_type" {
   description = "[MASTERS] Machine type"
-  default     = "n1-standard-8"
+  default     = "n1-standard-4"
 }
 
-variable "private_agent_machine_type" {
+variable "private_agents_gcp_image" {
+  description = "[PRIVATE AGENTS] Image to be used"
+  default     = ""
+}
+
+variable "private_agents_os" {
+  description = "[PRIVATE AGENTS] Operating system to use. Instead of using your own AMI you could use a provided OS."
+  default     = ""
+}
+
+variable "private_agents_root_volume_size" {
+  description = "[PRIVATE AGENTS] Root volume size in GB"
+  default     = "120"
+}
+
+variable "private_agents_root_volume_type" {
+  description = "[PRIVATE AGENTS] Root volume type"
+  default     = "pd-ssd"
+}
+
+variable "private_agents_machine_type" {
   description = "[PRIVATE AGENTS] Machine type"
-  default     = "n1-standard-8"
+  default     = "n1-standard-4"
 }
 
-variable "public_agent_machine_type" {
+variable "public_agents_gcp_image" {
+  description = "[PUBLIC AGENTS] Image to be used"
+  default     = ""
+}
+
+variable "public_agents_os" {
+  description = "[PUBLIC AGENTS] Operating system to use. Instead of using your own AMI you could use a provided OS."
+  default     = ""
+}
+
+variable "public_agents_root_volume_size" {
+  description = "[PUBLIC AGENTS] Root volume size"
+  default     = "120"
+}
+
+variable "public_agents_root_volume_type" {
+  description = "[PUBLIC AGENTS] Specify the root volume type."
+  default     = "pd-ssd"
+}
+
+variable "public_agents_machine_type" {
   description = "[PUBLIC AGENTS] Machine type"
-  default     = "n1-standard-8"
+  default     = "n1-standard-4"
+}
+
+variable "public_agents_additional_ports" {
+  description = "List of additional ports on public agents (in addition to 80 and 443)"
+  default     = []
+}
+
+variable "cluster_name_random_string" {
+  description = "Add a random string to the cluster name"
+  default     = false
 }
