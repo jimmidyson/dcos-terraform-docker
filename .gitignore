@@ -1,2 +1,4 @@
 /*.tfvars
 .docker.*
+/tfstate/
+/terraform-backend.tf
