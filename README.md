@@ -164,3 +164,31 @@ $ docker run --rm -it -u $(id -u):$(id -g) \
 | cluster-address |  |
 | masters-ips |  |
 | public-agents-loadbalancer |  |
+
+## Building
+
+To build the Docker images, run:
+
+```
+$ make docker.build
+```
+
+To build individual Docker images, run:
+
+```
+$ make docker.build.aws
+$ make docker.build.gcp
+```
+
+Equivalent targets exist for pushing the Docker images. Push all Docker images:
+
+```
+$ make docker.push
+```
+
+Or to push individual Docker images:
+
+```
+$ make docker.push.aws
+$ make docker.push.gcp
+```
