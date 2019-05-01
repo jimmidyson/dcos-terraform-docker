@@ -32,6 +32,11 @@ variable "dcos_security" {
   description = "[Enterprise DC/OS] set the security level of DC/OS. Default is strict. (recommended)"
 }
 
+variable "dcos_config" {
+  default     = ""
+  description = "used to add any extra arguments in the config.yaml that are not specified here. (optional)"
+}
+
 variable "instance_os" {
   description = "Operating system to use."
   default     = "centos_7.5"

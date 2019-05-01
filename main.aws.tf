@@ -34,6 +34,7 @@ module "dcos" {
   dcos_security             = "${var.dcos_security}"
   dcos_instance_os          = "${var.instance_os}"
   dcos_license_key_contents = "${file(local.dcos_ee_license_file_path)}"
+  dcos_config               = "${var.dcos_config}"
 
   bootstrap_instance_type      = "${var.bootstrap_instance_type}"
   masters_instance_type        = "${var.master_instance_type}"
