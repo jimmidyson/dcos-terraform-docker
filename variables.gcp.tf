@@ -1,6 +1,6 @@
 variable "gcp_credentials" {
   description = "Either the path to or the contents of a service account key file in JSON format. You can manage key files using the Cloud Console."
-  default = ""
+  default     = ""
 }
 
 variable "gcp_project" {
@@ -13,7 +13,7 @@ variable "gcp_region" {
 
 variable "gcp_zone" {
   description = "The default zone to manage resources in. Generally, this zone should be within the default region you specified. If another zone is specified on a zonal resource, it will take precedence."
-  default = ""
+  default     = ""
 }
 
 variable "bootstrap_machine_type" {

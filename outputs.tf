@@ -1,4 +1,3 @@
-
 output "masters-ips" {
   value = "${module.dcos.masters-ips}"
 }

@@ -1,6 +1,6 @@
 variable "aws_region" {
   description = "Region to be used"
-  default = "us-west-2"
+  default     = "us-west-2"
 }
 
 variable "bootstrap_instance_type" {

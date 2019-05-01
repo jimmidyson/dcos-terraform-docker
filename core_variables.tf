@@ -29,7 +29,7 @@ variable "dcos_security" {
 
 variable "instance_os" {
   description = "Operating system to use."
-  default = "centos_7.5"
+  default     = "centos_7.5"
 }
 
 variable "num_of_public_agents" {
