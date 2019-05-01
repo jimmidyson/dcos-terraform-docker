@@ -29,6 +29,7 @@ module "dcos" {
   num_public_agents  = "${var.num_of_public_agents}"
 
   dcos_version              = "${var.dcos_version}"
+  dcos_install_mode         = "${var.dcos_install_mode}"
   dcos_variant              = "${var.dcos_variant}"
   dcos_security             = "${var.dcos_security}"
   dcos_instance_os          = "${var.instance_os}"
