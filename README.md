@@ -24,6 +24,7 @@ The following steps create a DC/OS Open cluster on AWS.
       -e AWS_SHARED_CREDENTIALS_FILE=/tmp/aws/credentials \
       -e SSH_PRIVATE_KEY_FILE=/tmp/.ssh/SSH_KEY \
       -e AWS_PROFILE=your_aws_profile \
+      -e AWS_REGION=us-west-2 \
       mesosphere/dcos-terraform-aws:v0.2.1 apply -auto-approve -state=tfstate/terraform.tfstate
     ```
 
@@ -63,6 +64,7 @@ $ docker run --rm -it -u $(id -u):$(id -g) \
   -e AWS_SHARED_CREDENTIALS_FILE=/tmp/aws/credentials \
   -e SSH_PRIVATE_KEY_FILE=/tmp/.ssh/SSH_KEY \
   -e AWS_PROFILE=your_aws_profile \
+  -e AWS_REGION=us-west-2 \
   -v /PATH/TO/dcos_ee_license_file.txt:/tmp/dcos_ee_license_file.txt \
   mesosphere/dcos-terraform-aws:v0.2.1 apply -auto-approve -state=tfstate/terraform.tfstate
 ```
