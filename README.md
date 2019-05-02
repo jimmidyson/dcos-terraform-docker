@@ -25,7 +25,7 @@ The following steps create a DC/OS Open cluster on AWS.
       -e SSH_PRIVATE_KEY_FILE=/tmp/.ssh/SSH_KEY \
       -e AWS_PROFILE=your_aws_profile \
       -e AWS_REGION=us-west-2 \
-      mesosphere/dcos-terraform-aws:v0.2.1 apply -auto-approve -state=tfstate/terraform.tfstate
+      quay.io/jimmidyson/dcos-terraform-aws:v0.2.1 apply -auto-approve -state=tfstate/terraform.tfstate
     ```
 
 1. When ready to destroy the cluster, run the Docker container again:
@@ -37,7 +37,7 @@ The following steps create a DC/OS Open cluster on AWS.
       -v $(realpath tfstate):/dcos-terraform/tfstate \
       -e AWS_SHARED_CREDENTIALS_FILE=/tmp/aws/credentials \
       -e SSH_PRIVATE_KEY_FILE=/PATH/TO/PRIVATE_SSH_KEY \
-      mesosphere/dcos-terraform-aws:v0.2.1 destroy -auto-approve -state=tfstate/terraform.tfstate
+      quay.io/jimmidyson/dcos-terraform-aws:v0.2.1 destroy -auto-approve -state=tfstate/terraform.tfstate
     ```
 
 ## More examples
@@ -66,7 +66,7 @@ $ docker run --rm -it -u $(id -u):$(id -g) \
   -e AWS_PROFILE=your_aws_profile \
   -e AWS_REGION=us-west-2 \
   -v /PATH/TO/dcos_ee_license_file.txt:/tmp/dcos_ee_license_file.txt \
-  mesosphere/dcos-terraform-aws:v0.2.1 apply -auto-approve -state=tfstate/terraform.tfstate
+  quay.io/jimmidyson/dcos-terraform-aws:v0.2.1 apply -auto-approve -state=tfstate/terraform.tfstate
 ```
 
 ### DC/OS Open on GCP
@@ -86,7 +86,7 @@ $ docker run --rm -it -u $(id -u):$(id -g) \
   -e SSH_PRIVATE_KEY_FILE=/tmp/.ssh/SSH_KEY \
   -e GOOGLE_PROJECT=my-gcp-project \
   -e GOOGLE_REGION=us-west1 \
-  mesosphere/dcos-terraform-gcp:v0.1.5 apply -auto-approve -state=tfstate/terraform.tfstate
+  quay.io/jimmidyson/dcos-terraform-gcp:v0.1.5 apply -auto-approve -state=tfstate/terraform.tfstate
 ```
 
 ### DC/OS EE on GCP
@@ -110,7 +110,7 @@ $ docker run --rm -it -u $(id -u):$(id -g) \
   -e GOOGLE_PROJECT=my-gcp-project \
   -e GOOGLE_REGION=us-west1 \
   -v /PATH/TO/dcos_ee_license_file.txt:/tmp/dcos_ee_license_file.txt \
-  mesosphere/dcos-terraform-gcp:v0.1.5 apply -auto-approve -state=tfstate/terraform.tfstate
+  quay.io/jimmidyson/dcos-terraform-gcp:v0.1.5 apply -auto-approve -state=tfstate/terraform.tfstate
 ```
 
 ## Configuration
