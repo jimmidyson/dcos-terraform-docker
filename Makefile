@@ -3,9 +3,10 @@ SHELL := /bin/bash
 
 DCOS_TERRAFORM_MODULE_VERSION_aws := 0.2.1
 DCOS_TERRAFORM_MODULE_VERSION_gcp := 0.1.5
+DCOS_TERRAFORM_MODULE_VERSION_azurerm := 0.1.6
 
 .PHONY: docker.build
-docker.build: $(addprefix docker.build.,aws gcp)
+docker.build: $(addprefix docker.build.,aws gcp azurerm)
 
 .PHONY: docker.build.%
 docker.build.%: .docker.build.%
@@ -19,7 +20,7 @@ docker.build.%: .docker.build.%
 	@touch $@
 
 .PHONY: docker.push
-docker.push: $(addprefix docker.push.,aws gcp)
+docker.push: $(addprefix docker.push.,aws gcp azurerm)
 
 .PHONY: docker.push.%
 docker.push.%: docker.build.%
