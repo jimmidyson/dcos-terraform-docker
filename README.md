@@ -113,6 +113,23 @@ Please refer to the relevant DC/OS Terraform module documentation for available 
 * [GCP](https://github.com/dcos-terraform/terraform-gcp-dcos)
 * [AWS](https://github.com/dcos-terraform/terraform-aws-dcos)
 
+### Helper variables
+
+In addition to the core module configurations linked above, the following helper variables are
+provided which make it slightly easier to run in a Docker container:
+
+| Name | Description | Type | Default | Required |
+|------|-------------|:----:|:-----:|:-----:|
+| dcos\_license\_key\_file | [Enterprise DC/OS] used to privide the license key of DC/OS for Enterprise Edition. Optional if dcos_license_key_contents is set or license.txt is present on bootstrap node. | string | `""` | no |
+
+### Outputs
+
+| Name | Description |
+|------|-------------|
+| cluster-address |  |
+| masters-ips |  |
+| public-agents-loadbalancer |  |
+
 ## Building
 
 To build the Docker images, run:
