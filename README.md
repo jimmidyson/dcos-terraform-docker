@@ -127,6 +127,7 @@ provided which make it slightly easier to run in a Docker container:
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
+| admin\_ips | List of CIDR admin IPs (comma separated string) | string | `""` | no |
 | dcos\_license\_key\_file | [Enterprise DC/OS] used to privide the license key of DC/OS for Enterprise Edition. Optional if dcos_license_key_contents is set or license.txt is present on bootstrap node. | string | `""` | no |
 
 ### Outputs

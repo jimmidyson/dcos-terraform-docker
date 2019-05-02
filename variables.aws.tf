@@ -39,11 +39,6 @@ variable "tags" {
   default     = {}
 }
 
-variable "admin_ips" {
-  type        = "list"
-  description = "List of CIDR admin IPs"
-}
-
 variable "availability_zones" {
   type        = "list"
   description = "List of availability_zones to be used as the same format that are required by the platform/cloud providers. i.e ['RegionZone']"

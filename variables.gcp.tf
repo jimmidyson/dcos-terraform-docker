@@ -34,11 +34,6 @@ variable "labels" {
   default     = {}
 }
 
-variable "admin_ips" {
-  description = "List of CIDR admin IPs (comma separated string)"
-  default     = ""
-}
-
 variable "availability_zones" {
   type        = "list"
   description = "Availability zones to be used"
