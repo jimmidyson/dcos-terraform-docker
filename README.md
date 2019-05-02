@@ -5,13 +5,16 @@
 The following steps create a DC/OS Open cluster on AWS.
 
 1. Create a variable definition file ending in `.auto.tfvars`, e.g. `aws-open.auto.tfvars` (check the `examples` directory for some inspiration). A minimal example for DC/OS Open on AWS is:
-    ```
+
+    ```hcl
     cluster_name = "mydcosopencluster"
     ssh_public_key_file = "/tmp/.ssh/SSH_KEY.pub"
     ```
+
 1. Ensure that you are logged in to AWS CLI.
 1. Run the Docker container to create the cluster:
-    ```
+
+    ```shell
     $ mkdir -p tfstate
     $ docker run --rm -it -u $(id -u):$(id -g) \
       -v ~/.aws:/tmp/aws \
@@ -23,8 +26,10 @@ The following steps create a DC/OS Open cluster on AWS.
       -e AWS_PROFILE=your_aws_profile \
       mesosphere/dcos-terraform-aws:v0.2.1 apply -auto-approve -state=tfstate/terraform.tfstate
     ```
+
 1. When ready to destroy the cluster, run the Docker container again:
-    ```
+
+    ```shell
     $ docker run --rm -it -u $(id -u):$(id -g) \
       -v ~/.aws:/tmp/aws \
       -v $(realpath aws-open.auto.tfvars):/dcos-terraform/aws-open.auto.tfvars \
@@ -40,7 +45,7 @@ The following examples show the minimal configuration required to create a DC/OS
 
 ### DC/OS EE on AWS
 
-```
+```hcl
 cluster_name = "mydcosopencluster"
 ssh_public_key_file = "/tmp/.ssh/SSH_KEY.pub"
 dcos_variant = "ee"
@@ -48,7 +53,7 @@ dcos_license_key_file = "/tmp/dcos_ee_license_file.txt
 dcos_security = "strict"
 ```
 
-```
+```shell
 $ mkdir -p tfstate
 $ docker run --rm -it -u $(id -u):$(id -g) \
   -v ~/.aws:/tmp/aws \
@@ -64,12 +69,12 @@ $ docker run --rm -it -u $(id -u):$(id -g) \
 
 ### DC/OS Open on GCP
 
-```
+```hcl
 cluster_name = "mydcosopencluster"
 ssh_public_key_file = "/tmp/.ssh/SSH_KEY.pub"
 ```
 
-```
+```shell
 $ docker run --rm -it -u $(id -u):$(id -g) \
   -v ~/.config/gcloud/application_default_credentials.json:/tmp/application_default_credentials.json \
   -e GOOGLE_APPLICATION_CREDENTIALS=/tmp/application_default_credentials.json \
@@ -84,7 +89,7 @@ $ docker run --rm -it -u $(id -u):$(id -g) \
 
 ### DC/OS EE on GCP
 
-```
+```hcl
 cluster_name = "mydcosopencluster"
 ssh_public_key_file = "/tmp/.ssh/SSH_KEY.pub"
 dcos_variant = "ee"
@@ -92,7 +97,7 @@ dcos_license_key_file = "/tmp/dcos_ee_license_file.txt
 dcos_security = "strict"
 ```
 
-```
+```shell
 $ docker run --rm -it -u $(id -u):$(id -g) \
   -v ~/.config/gcloud/application_default_credentials.json:/tmp/application_default_credentials.json \
   -e GOOGLE_APPLICATION_CREDENTIALS=/tmp/application_default_credentials.json \
@@ -134,26 +139,32 @@ provided which make it slightly easier to run in a Docker container:
 
 To build the Docker images, run:
 
-```
+```shell
 $ make docker.build
+...
 ```
 
 To build individual Docker images, run:
 
-```
+```shell
 $ make docker.build.aws
+...
 $ make docker.build.gcp
+...
 ```
 
 Equivalent targets exist for pushing the Docker images. Push all Docker images:
 
-```
+```shell
 $ make docker.push
+...
 ```
 
 Or to push individual Docker images:
 
-```
+```shell
 $ make docker.push.aws
+...
 $ make docker.push.gcp
+...
 ```
