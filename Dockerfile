@@ -18,7 +18,8 @@ ADD empty_ee_license_file.txt /dcos-terraform/empty_ee_license_file.txt
 
 COPY main.${PROVIDER}.tf main.tf
 COPY variables.${PROVIDER}.tf variables.tf
-COPY outputs.tf dcos_core_variables.tf ./
+COPY dcos_core_variables.${PROVIDER}.tf dcos_core_variables.tf
+COPY outputs.tf ./
 RUN sed -i "s/__DCOS_TERRAFORM_MODULE_VERSION__/${DCOS_TERRAFORM_MODULE_VERSION}/" main.tf
 RUN terraform init -get=true -get-plugins=true
 

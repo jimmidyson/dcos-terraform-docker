@@ -46,7 +46,7 @@ variable "admin_ips" {
 
 variable "availability_zones" {
   type        = "list"
-  description = "Availability zones to be used"
+  description = "List of availability_zones to be used as the same format that are required by the platform/cloud providers. i.e ['RegionZone']"
   default     = []
 }
 
@@ -95,6 +95,11 @@ variable "bootstrap_associate_public_ip_address" {
   default     = true
 }
 
+variable "bootstrap_hostname_format" {
+  description = "[BOOTSTRAP] Format the hostname inputs are index+1, region, cluster_name"
+  default     = "%[3]s-bootstrap%[1]d-%[2]s"
+}
+
 variable "masters_aws_ami" {
   description = "[MASTERS] AMI to be used"
   default     = ""
@@ -123,6 +128,11 @@ variable "masters_iam_instance_profile" {
 variable "masters_associate_public_ip_address" {
   description = "[MASTERS] Associate a public ip address with there instances"
   default     = true
+}
+
+variable "masters_hostname_format" {
+  description = "[MASTERS] Format the hostname inputs are index+1, region, cluster_name"
+  default     = "%[3]s-master%[1]d-%[2]s"
 }
 
 variable "private_agents_aws_ami" {
@@ -165,6 +175,11 @@ variable "private_agents_associate_public_ip_address" {
   default     = true
 }
 
+variable "private_agents_hostname_format" {
+  description = "[PRIVATE AGENTS] Format the hostname inputs are index+1, region, cluster_name"
+  default     = "%[3]s-privateagent%[1]d-%[2]s"
+}
+
 variable "public_agents_aws_ami" {
   description = "[PUBLIC AGENTS] AMI to be used"
   default     = ""
@@ -200,6 +215,11 @@ variable "public_agents_associate_public_ip_address" {
   default     = true
 }
 
+variable "public_agents_hostname_format" {
+  description = "[PUBLIC AGENTS] Format the hostname inputs are index+1, region, cluster_name"
+  default     = "%[3]s-publicagent%[1]d-%[2]s"
+}
+
 variable "public_agents_additional_ports" {
   description = "List of additional ports allowed for public access on public agents (80 and 443 open by default)"
   default     = []
@@ -216,7 +236,53 @@ variable "cluster_name_random_string" {
   default     = false
 }
 
+variable "accepted_internal_networks" {
+  description = "Subnet ranges for all internal networks"
+  type        = "list"
+  default     = []
+}
+
 variable "subnet_range" {
   description = "Private IP space to be used in CIDR format"
-  default     = "172.12.0.0/16"
+  default     = "172.16.0.0/16"
+}
+
+variable "additional_public_agent_ips" {
+  description = "Additional public agent IPs."
+  default     = []
+}
+
+variable "additional_private_agent_ips" {
+  description = "Additional private agent IPs."
+  default     = []
+}
+
+variable "ansible_bundled_container" {
+  default     = "mesosphere/dcos-ansible-bundle:latest"
+  description = "Docker container with bundled dcos-ansible and ansible executables"
+}
+
+variable "ansible_additional_config" {
+  default     = ""
+  description = "Add additional config options to ansible. This is getting merged with generated defaults. Do not specify `dcos:`"
+}
+
+variable "with_replaceable_masters" {
+  description = "Create S3 bucket for exhibitor and configure DC/OS to use it."
+  default     = false
+}
+
+variable "masters_acm_cert_arn" {
+  description = "ACM certifacte to be used for the masters load balancer"
+  default     = ""
+}
+
+variable "masters_internal_acm_cert_arn" {
+  description = "ACM certifacte to be used for the internal masters load balancer"
+  default     = ""
+}
+
+variable "public_agents_acm_cert_arn" {
+  description = "ACM certifacte to be used for the public agents load balancer"
+  default     = ""
 }
