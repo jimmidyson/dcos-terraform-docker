@@ -20,8 +20,6 @@ num_of_masters = "1"
 
 ssh_public_key_file = "/PATH/TO/PUBLIC_SSH_KEY.pub"
 
-aws_region = "us-west-2"
-
 bootstrap_machine_type = "n1-standard-1"
 
 master_machine_type = "n1-standard-8"

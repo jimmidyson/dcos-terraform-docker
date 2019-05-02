@@ -8,7 +8,6 @@ The following steps create a DC/OS Open cluster on AWS.
     ```
     cluster_name = "mydcosopencluster"
     ssh_public_key_file = "/tmp/.ssh/SSH_KEY.pub"
-    aws_region = "us-west-2"
     ```
 1. Ensure that you are logged in to AWS CLI.
 1. Run the Docker container to create the cluster:
@@ -44,7 +43,6 @@ The following examples show the minimal configuration required to create a DC/OS
 ```
 cluster_name = "mydcosopencluster"
 ssh_public_key_file = "/tmp/.ssh/SSH_KEY.pub"
-aws_region = "us-west-2"
 dcos_variant = "ee"
 dcos_license_key_file = "/tmp/dcos_ee_license_file.txt
 dcos_security = "strict"

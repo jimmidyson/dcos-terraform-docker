@@ -16,8 +16,6 @@ num_of_masters = "1"
 
 ssh_public_key_file = "/PATH/TO/PUBLIC_SSH_KEY.pub"
 
-aws_region = "us-west-2"
-
 bootstrap_instance_type = "m5.large"
 
 master_instance_type = "m5.2xlarge"
