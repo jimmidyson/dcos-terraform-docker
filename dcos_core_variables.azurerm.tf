@@ -251,8 +251,7 @@ variable "dcos_enable_gpu_isolation" {
 }
 
 variable "dcos_fault_domain_detect_contents" {
-  default = ""
-
+  default     = ""
   description = "[Enterprise DC/OS] fault domain script contents. Optional but required if no fault-domain-detect script present."
 }
 
@@ -463,14 +462,12 @@ variable "dcos_ip_detect_public_filename" {
 }
 
 variable "dcos_ip_detect_public_contents" {
-  default = ""
-
+  default     = ""
   description = " Allows DC/OS to be aware of your publicly routeable address for ease of use (recommended)"
 }
 
 variable "dcos_ip_detect_contents" {
-  default = ""
-
+  default     = ""
   description = "Allows DC/OS to detect your private address. Use this to pass this as an input to the module rather than a file in side your bootstrap node. (recommended)"
 }
 
