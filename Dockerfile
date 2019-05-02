@@ -14,12 +14,11 @@ WORKDIR /dcos-terraform
 RUN mkdir -p /dcos-terraform/tfstate && chmod 777 /dcos-terraform/tfstate
 VOLUME /dcos-terraform/tfstate
 
-ADD empty_ee_license_file.txt /dcos-terraform/empty_ee_license_file.txt
-
+COPY empty_ee_license_file.txt /dcos-terraform/empty_ee_license_file.txt
 COPY main.${PROVIDER}.tf main.tf
 COPY variables.${PROVIDER}.tf variables.tf
 COPY dcos_core_variables.${PROVIDER}.tf dcos_core_variables.tf
-COPY outputs.tf ./
+COPY outputs.tf helper-variables.tf ./
 RUN sed -i "s/__DCOS_TERRAFORM_MODULE_VERSION__/${DCOS_TERRAFORM_MODULE_VERSION}/" main.tf
 RUN terraform init -get=true -get-plugins=true
 
