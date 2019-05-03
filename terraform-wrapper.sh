@@ -8,6 +8,6 @@ if [ -n "${SSH_PRIVATE_KEY_FILE}" ]; then
   ssh-add "${SSH_PRIVATE_KEY_FILE}"
 fi
 
-terraform init
+terraform init >&2
 
 exec terraform "$@"
