@@ -16,7 +16,7 @@ docker.build.%: .docker.build.%
 .docker.build.%: dcos_core_variables.%.tf Dockerfile main.%.tf outputs.tf terraform-wrapper.sh variables.%.tf
 	@docker build --build-arg PROVIDER=$* \
 								--build-arg DCOS_TERRAFORM_MODULE_VERSION=$(DCOS_TERRAFORM_MODULE_VERSION_$*) \
-								-t quay.io/jimmidyson/dcos-terraform-$*:v$(DCOS_TERRAFORM_MODULE_VERSION_$*) .
+								-t mesosphere/dcos-terraform-$*:v$(DCOS_TERRAFORM_MODULE_VERSION_$*) .
 	@touch $@
 
 .PHONY: docker.push
@@ -29,7 +29,7 @@ ifdef DOCKER_PASSWORD
 	@docker login -u $(DOCKER_USERNAME) -p $(DOCKER_PASSWORD)
 endif
 endif
-	@docker push quay.io/jimmidyson/dcos-terraform-$*:v$(DCOS_TERRAFORM_MODULE_VERSION_$*)
+	@docker push mesosphere/dcos-terraform-$*:v$(DCOS_TERRAFORM_MODULE_VERSION_$*)
 
 .PHONY: clean
 clean:
