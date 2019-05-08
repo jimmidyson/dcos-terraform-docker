@@ -6,7 +6,7 @@ dcos_version = "1.12.3"
 
 dcos_variant = "open"
 
-instance_os = "centos_7.5"
+dcos_instance_os = "centos_7.5"
 
 num_of_public_agents = "0"
 

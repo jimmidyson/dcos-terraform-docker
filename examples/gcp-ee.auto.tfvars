@@ -10,7 +10,7 @@ dcos_ee_license_file = "/PATH/TO/DCOS_EE_LICENSE_FILE.txt"
 
 dcos_security = "strict"
 
-instance_os = "centos_7.5"
+dcos_instance_os = "centos_7.5"
 
 num_of_public_agents = "0"
 

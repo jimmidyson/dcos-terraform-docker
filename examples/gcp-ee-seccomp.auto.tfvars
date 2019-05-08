@@ -15,7 +15,7 @@ mesos_seccomp_enabled: 'true'
 mesos_seccomp_profile_name: default.json
 EOF
 
-instance_os = "centos_7.5"
+dcos_instance_os = "centos_7.5"
 
 num_of_public_agents = "0"
 
