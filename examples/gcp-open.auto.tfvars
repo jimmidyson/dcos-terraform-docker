@@ -8,11 +8,11 @@ dcos_variant = "open"
 
 dcos_instance_os = "centos_7.5"
 
-num_of_public_agents = "0"
+num_public_agents = "0"
 
-num_of_private_agents = "3"
+num_private_agents = "3"
 
-num_of_masters = "1"
+num_masters = "1"
 
 ssh_public_key_file = "/PATH/TO/PUBLIC_SSH_KEY.pub"
 
