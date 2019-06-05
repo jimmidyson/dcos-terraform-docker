@@ -1,7 +1,7 @@
 SHELL := /bin/bash
 .SHELLFLAGS = -o pipefail -c
 
-DCOS_TERRAFORM_MODULE_VERSION_aws := 0.2.1
+DCOS_TERRAFORM_MODULE_VERSION_aws := 0.2.2
 DCOS_TERRAFORM_MODULE_VERSION_gcp := 0.1.5
 DCOS_TERRAFORM_MODULE_VERSION_azurerm := 0.1.6
 
@@ -14,7 +14,8 @@ docker.build.%: .docker.build.%
 
 .PRECIOUS: .docker.build.%
 .docker.build.%: dcos_core_variables.%.tf Dockerfile main.%.tf outputs.tf terraform-wrapper.sh variables.%.tf
-	@docker build --build-arg PROVIDER=$* \
+	@docker build --no-cache \
+								--build-arg PROVIDER=$* \
 								--build-arg DCOS_TERRAFORM_MODULE_VERSION=$(DCOS_TERRAFORM_MODULE_VERSION_$*) \
 								-t mesosphere/dcos-terraform-$*:v$(DCOS_TERRAFORM_MODULE_VERSION_$*) .
 	@touch $@
