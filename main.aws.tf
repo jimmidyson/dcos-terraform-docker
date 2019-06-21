@@ -11,15 +11,9 @@ locals {
   dcos_license_key_contents = "${var.dcos_license_key_contents != "" ? var.dcos_license_key_contents : file(local.dcos_license_key_file)}"
 }
 
-provider "aws" {}
-
 module "dcos" {
   source  = "dcos-terraform/dcos/aws"
   version = "__DCOS_TERRAFORM_MODULE_VERSION__"
-
-  providers = {
-    aws = "aws"
-  }
 
   # Main Variables
   dcos_variant         = "${var.dcos_variant}"

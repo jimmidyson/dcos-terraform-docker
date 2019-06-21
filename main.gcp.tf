@@ -9,36 +9,20 @@ locals {
   dcos_license_key_file       = "${var.dcos_license_key_file == "" ? local.empty_dcos_license_key_file : var.dcos_license_key_file}"
 
   dcos_license_key_contents = "${var.dcos_license_key_contents != "" ? var.dcos_license_key_contents : file(local.dcos_license_key_file)}"
-
-  default_dcos_resolvers = <<EOF
-# YAML
-  - 169.254.169.254
-EOF
-
-  dcos_resolvers = "${var.dcos_resolvers == "" ? local.default_dcos_resolvers : var.dcos_resolvers}"
-}
-
-provider "google" {
-  version = "~> 1.18"
 }
 
 module "dcos" {
   source  = "dcos-terraform/dcos/gcp"
   version = "__DCOS_TERRAFORM_MODULE_VERSION__"
 
-  providers = {
-    google = "google"
-  }
-
   # Main Variables
   dcos_variant         = "${var.dcos_variant}"
   bootstrap_private_ip = "${var.bootstrap_private_ip}"
-  dcos_install_mode    = "${var.dcos_install_mode}"
   dcos_version         = "${var.dcos_version}"
 
   # DCOS bootstrap node variables
   dcos_security                                = "${var.dcos_security}"
-  dcos_resolvers                               = "${local.dcos_resolvers}"
+  dcos_resolvers                               = "${var.dcos_resolvers}"
   dcos_skip_checks                             = "${var.dcos_skip_checks}"
   dcos_oauth_enabled                           = "${var.dcos_oauth_enabled}"
   dcos_master_external_loadbalancer            = "${var.dcos_master_external_loadbalancer}"
@@ -93,7 +77,6 @@ module "dcos" {
   dcos_mesos_max_completed_tasks_per_framework = "${var.dcos_mesos_max_completed_tasks_per_framework}"
   dcos_ucr_default_bridge_subnet               = "${var.dcos_ucr_default_bridge_subnet}"
   dcos_superuser_username                      = "${var.dcos_superuser_username}"
-  dcos_telemetry_enabled                       = "${var.dcos_telemetry_enabled}"
   dcos_zk_super_credentials                    = "${var.dcos_zk_super_credentials}"
   dcos_zk_master_credentials                   = "${var.dcos_zk_master_credentials}"
   dcos_zk_agent_credentials                    = "${var.dcos_zk_agent_credentials}"
@@ -166,5 +149,12 @@ module "dcos" {
   public_agents_root_volume_type  = "${var.public_agents_root_volume_type}"
   public_agents_machine_type      = "${var.public_agents_machine_type}"
   public_agents_additional_ports  = "${var.public_agents_additional_ports}"
+  public_agents_access_ips        = "${var.public_agents_access_ips}"
   cluster_name_random_string      = "${var.cluster_name_random_string}"
+  accepted_internal_networks      = "${var.accepted_internal_networks}"
+  subnet_range                    = "${var.subnet_range}"
+  additional_public_agent_ips     = "${var.additional_public_agent_ips}"
+  additional_private_agent_ips    = "${var.additional_private_agent_ips}"
+  ansible_bundled_container       = "${var.ansible_bundled_container}"
+  ansible_additional_config       = "${var.ansible_additional_config}"
 }

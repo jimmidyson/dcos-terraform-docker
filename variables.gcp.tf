@@ -5,8 +5,7 @@ variable "cluster_name" {
 
 variable "ssh_public_key" {
   description = "SSH public key in authorized keys format (e.g. 'ssh-rsa ..') to be used with the instances. Make sure you added this key to your ssh-agent."
-
-  default = ""
+  default     = ""
 }
 
 variable "ssh_public_key_file" {
@@ -25,7 +24,7 @@ variable "num_private_agents" {
 
 variable "num_public_agents" {
   description = "Specify the amount of public agents. These agents will host marathon-lb and edgelb"
-  default     = 0
+  default     = 1
 }
 
 variable "labels" {
@@ -36,14 +35,13 @@ variable "labels" {
 
 variable "availability_zones" {
   type        = "list"
-  description = "Availability zones to be used"
+  description = "List of availability_zones to be used as the same format that are required by the platform/cloud providers. i.e ['RegionZone']"
   default     = []
 }
 
 variable "dcos_instance_os" {
   description = "Operating system to use. Instead of using your own AMI you could use a provided OS."
-
-  default = "centos_7.5"
+  default     = "centos_7.5"
 }
 
 variable "bootstrap_gcp_image" {
@@ -68,7 +66,7 @@ variable "bootstrap_root_volume_type" {
 
 variable "bootstrap_machine_type" {
   description = "[BOOTSTRAP] Machine type"
-  default     = "n1-standard-2"
+  default     = "n1-standard-4"
 }
 
 variable "masters_gcp_image" {
@@ -142,11 +140,48 @@ variable "public_agents_machine_type" {
 }
 
 variable "public_agents_additional_ports" {
-  description = "List of additional ports on public agents (in addition to 80 and 443)"
+  description = "List of additional ports allowed for public access on public agents (80 and 443 open by default)"
   default     = []
+}
+
+variable "public_agents_access_ips" {
+  description = "List of ips allowed access to public agents. admin_ips are joined to this list"
+  type        = "list"
+  default     = ["0.0.0.0/0"]
 }
 
 variable "cluster_name_random_string" {
   description = "Add a random string to the cluster name"
   default     = false
+}
+
+variable "accepted_internal_networks" {
+  description = "Subnet ranges for all internal networks"
+  type        = "list"
+  default     = []
+}
+
+variable "subnet_range" {
+  description = "Private IP space to be used in CIDR format"
+  default     = "172.16.0.0/16"
+}
+
+variable "additional_public_agent_ips" {
+  description = "Additional public agent IPs."
+  default     = []
+}
+
+variable "additional_private_agent_ips" {
+  description = "Additional private agent IPs."
+  default     = []
+}
+
+variable "ansible_bundled_container" {
+  default     = "mesosphere/dcos-ansible-bundle:latest"
+  description = "Docker container with bundled dcos-ansible and ansible executables"
+}
+
+variable "ansible_additional_config" {
+  default     = ""
+  description = "Add additional config options to ansible. This is getting merged with generated defaults. Do not specify `dcos:`"
 }

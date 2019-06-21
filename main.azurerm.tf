@@ -9,26 +9,11 @@ locals {
   dcos_license_key_file       = "${var.dcos_license_key_file == "" ? local.empty_dcos_license_key_file : var.dcos_license_key_file}"
 
   dcos_license_key_contents = "${var.dcos_license_key_contents != "" ? var.dcos_license_key_contents : file(local.dcos_license_key_file)}"
-
-  default_dcos_resolvers = <<EOF
-# YAML
-  - 169.254.169.254
-EOF
-
-  dcos_resolvers = "${var.dcos_resolvers == "" ? local.default_dcos_resolvers : var.dcos_resolvers}"
-}
-
-provider "google" {
-  version = "~> 1.18"
 }
 
 module "dcos" {
   source  = "dcos-terraform/dcos/azurerm"
   version = "__DCOS_TERRAFORM_MODULE_VERSION__"
-
-  providers = {
-    google = "google"
-  }
 
   # Main Variables
   dcos_variant         = "${var.dcos_variant}"
