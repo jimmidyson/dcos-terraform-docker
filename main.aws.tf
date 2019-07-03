@@ -19,6 +19,7 @@ module "dcos" {
   dcos_variant         = "${var.dcos_variant}"
   bootstrap_private_ip = "${var.bootstrap_private_ip}"
   dcos_version         = "${var.dcos_version}"
+  dcos_image_commit    = "${var.dcos_image_commit}"
 
   # DCOS bootstrap node variables
   dcos_security                                = "${var.dcos_security}"
