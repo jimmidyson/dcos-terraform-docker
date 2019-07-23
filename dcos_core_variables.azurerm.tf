@@ -14,7 +14,7 @@ variable "dcos_install_mode" {
 }
 
 variable "dcos_version" {
-  default     = "1.12.3"
+  default     = "1.13.2"
   description = "specifies which dcos version instruction to use. Options: `1.9.0`, `1.8.8`, etc. _See [dcos_download_path](https://github.com/dcos/tf_dcos_core/blob/master/download-variables.tf) or [dcos_version](https://github.com/dcos/tf_dcos_core/tree/master/dcos-versions) tree for a full list._"
 }
 
