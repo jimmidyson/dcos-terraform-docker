@@ -165,4 +165,7 @@ module "dcos" {
   public_agents_access_ips                   = "${var.public_agents_access_ips}"
   cluster_name_random_string                 = "${var.cluster_name_random_string}"
   subnet_range                               = "${var.subnet_range}"
+
+  ansible_bundled_container       = "${var.ansible_bundled_container}"
+  ansible_additional_config       = "${var.ansible_additional_config}"
 }
