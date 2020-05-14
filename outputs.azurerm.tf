@@ -15,10 +15,10 @@ output "masters-internal-loadbalancer" {
 
 output "public-agents-loadbalancer" {
   description = "This is the load balancer address to access the DC/OS public agents"
-  value       = "${module.dcos.dcos.public-agents-loadbalancer}"
+  value       = "${module.dcos.public-agents-loadbalancer}"
 }
 
 output "azurerm_storage_key" {
   description = "Azure Storage Account Access Keys for External Exhibitor"
-  value       = "${module.dcos.infrastructure.azurerm_storage_key}"
+  value       = "${module.dcos.azurerm_storage_key}"
 }
