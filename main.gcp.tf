@@ -129,6 +129,7 @@ module "dcos" {
   num_private_agents              = "${var.num_private_agents}"
   num_public_agents               = "${var.num_public_agents}"
   labels                          = "${var.labels}"
+  admin_ips                       = "${local.admin_ips}"
   availability_zones              = "${var.availability_zones}"
   dcos_instance_os                = "${var.dcos_instance_os}"
   bootstrap_gcp_image             = "${var.bootstrap_gcp_image}"

@@ -15,7 +15,7 @@ docker.build.%: .docker.build.%
 	@printf ''
 
 .PRECIOUS: .docker.build.%
-.docker.build.%: dcos_core_variables.%.tf Dockerfile main.%.tf outputs.tf terraform-wrapper.sh variables.%.tf
+.docker.build.%: dcos_core_variables.%.tf Dockerfile main.%.tf outputs.%.tf terraform-wrapper.sh variables.%.tf
 	@docker build --no-cache \
 								--build-arg PROVIDER=$* \
 								--build-arg DCOS_TERRAFORM_MODULE_VERSION=$(DCOS_TERRAFORM_MODULE_VERSION_$*) \
