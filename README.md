@@ -134,7 +134,7 @@ provided which make it slightly easier to run in a Docker container:
 
 | Name | Description |
 |------|-------------|
-| cluster-address |  |
+| masters-loadbalancer |  |
 | masters-ips |  |
 | public-agents-loadbalancer |  |
 
