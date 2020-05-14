@@ -10,8 +10,8 @@ variable "bootstrap_private_ip" {
 }
 
 variable "dcos_version" {
-  default     = "1.13.2"
-  description = "Specifies which DC/OS version instruction to use. Options: 1.12.3, 1.11.10, etc. See dcos_download_path or dcos_version tree for a full list."
+  default     = "2.0.0"
+  description = "Specifies which DC/OS version instruction to use. Options: 2.0.0, 1.13.6, 1.12.4, 1.11.12, etc. See https://versions.d2iq.com/version for a full list."
 }
 
 variable "dcos_image_commit" {
@@ -489,6 +489,16 @@ variable "custom_dcos_download_path" {
   description = "insert location of dcos installer script (optional)"
 }
 
+variable "custom_dcos_windows_download_path" {
+  default     = ""
+  description = "[DEPRECATED] insert location of dcos windows installer script (optional)"
+}
+
+variable "dcos_enable_windows_agents" {
+  default     = ""
+  description = "[DEPRECATED] enable windows agents. value must be true or false (optional)"
+}
+
 variable "dcos_cluster_docker_registry_enabled" {
   description = "DC/OS cluster docker registry enabled"
   default     = ""
@@ -512,4 +522,49 @@ variable "dcos_package_storage_uri" {
 variable "dcos_enable_mesos_input_plugin" {
   default     = ""
   description = "Indicates whether to enable Telegraf's Mesos input plugin to collect Mesos metrics from Mesos masters and agents. Options: `true` or `false` (optional)"
+}
+
+variable "dcos_download_url_checksum" {
+  description = "Custom DC/OS download URL SHA256 Checksum. Empty string omits checking."
+  default     = ""
+}
+
+variable "dcos_versions_service_url" {
+  default     = "https://versions.d2iq.com"
+  description = "DC/OS Versions Service allows to identify DC/OS versions"
+}
+
+variable "dcos_calico_network_cidr" {
+  default     = ""
+  description = "Subnet allocated for calico"
+}
+
+variable "dcos_calico_vxlan_enabled" {
+  default     = ""
+  description = "Control whether IP-in-IP or VXLAN mode is used for calico. (optional)"
+}
+
+variable "dcos_calico_ipinip_mtu" {
+  default     = ""
+  description = "The MTU to set on the Calico IPIP tunnel device. (optional)"
+}
+
+variable "dcos_calico_vxlan_vni" {
+  default     = ""
+  description = "The virtual network ID used for calico VXLAN. (optional)"
+}
+
+variable "dcos_calico_vxlan_mtu" {
+  default     = ""
+  description = "The MTU to set on the Calico VXLAN tunnel device. (optional)"
+}
+
+variable "dcos_calico_vxlan_port" {
+  default     = ""
+  description = "The UDP port used for calico VXLAN. This configuration works when dcos_calico_vxlan_enabled is set to be true. (optional)"
+}
+
+variable "dcos_calico_veth_mtu" {
+  default     = ""
+  description = "The MTU to set on the veth pair devices. (optional)"
 }

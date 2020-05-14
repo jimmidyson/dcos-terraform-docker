@@ -35,7 +35,7 @@ variable "labels" {
 
 variable "availability_zones" {
   type        = "list"
-  description = "List of availability_zones to be used as the same format that are required by the platform/cloud providers. i.e ['RegionZone']"
+  description = "List of availability_zones to be used as the same format that are required by the platform/cloud providers. i.e `['RegionZone']`"
   default     = []
 }
 
@@ -66,7 +66,7 @@ variable "bootstrap_root_volume_type" {
 
 variable "bootstrap_machine_type" {
   description = "[BOOTSTRAP] Machine type"
-  default     = "n1-standard-4"
+  default     = "n1-standard-2"
 }
 
 variable "masters_gcp_image" {

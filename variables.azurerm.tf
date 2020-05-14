@@ -5,8 +5,7 @@ variable "cluster_name" {
 
 variable "ssh_public_key" {
   description = "SSH public key in authorized keys format (e.g. 'ssh-rsa ..') to be used with the instances. Make sure you added this key to your ssh-agent."
-
-  default = ""
+  default     = ""
 }
 
 variable "ssh_public_key_file" {
@@ -15,6 +14,11 @@ variable "ssh_public_key_file" {
 
 variable "location" {
   description = "Azure Region"
+}
+
+variable "avset_platform_fault_domain_count" {
+  description = "Availability set platform fault domain count, differs from location to location"
+  default     = 3
 }
 
 variable "num_masters" {
@@ -45,9 +49,7 @@ variable "cluster_name_random_string" {
 
 variable "dcos_instance_os" {
   description = "Operating system to use. Instead of using your own AMI you could use a provided OS."
-
-  # default     = "centos_7.4"
-  default = "centos_7.5"
+  default     = "centos_7.6"
 }
 
 variable "bootstrap_image" {
@@ -73,7 +75,7 @@ variable "bootstrap_root_volume_type" {
 
 variable "bootstrap_vm_size" {
   description = "[BOOTSTRAP] Azure virtual machine size"
-  default     = "Standard_B2s"
+  default     = "Standard_B4ms"
 }
 
 variable "masters_image" {
@@ -157,4 +159,39 @@ variable "public_agents_additional_ports" {
 variable "subnet_range" {
   description = "Private IP space to be used in CIDR format"
   default     = "172.12.0.0/16"
+}
+
+variable "additional_public_agent_ips" {
+  description = "Additional public agent IPs."
+  default     = []
+}
+
+variable "additional_private_agent_ips" {
+  description = "Additional private agent IPs."
+  default     = []
+}
+
+variable "additional_windows_private_agent_ips" {
+  description = "Additional windows private agent IPs"
+  default     = []
+}
+
+variable "additional_windows_private_agent_passwords" {
+  description = "Additional windows private agent passwords to be used for WinRM"
+  default     = []
+}
+
+variable "additional_windows_private_agent_os_user" {
+  description = "Additional windows private agent os user to be used for WinRM"
+  default     = "dcosadmin"
+}
+
+variable "ansible_bundled_container" {
+  default     = "mesosphere/dcos-ansible-bundle:latest"
+  description = "Docker container with bundled dcos-ansible and ansible executables"
+}
+
+variable "ansible_additional_config" {
+  default     = ""
+  description = "Add additional config options to ansible. This is getting merged with generated defaults. Do not specify `dcos:`"
 }

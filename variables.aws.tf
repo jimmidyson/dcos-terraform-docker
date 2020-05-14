@@ -41,7 +41,7 @@ variable "tags" {
 
 variable "availability_zones" {
   type        = "list"
-  description = "List of availability_zones to be used as the same format that are required by the platform/cloud providers. i.e ['RegionZone']"
+  description = "List of availability_zones to be used as the same format that are required by the platform/cloud providers. i.e `['RegionZone']`"
   default     = []
 }
 
@@ -52,7 +52,7 @@ variable "aws_ami" {
 
 variable "dcos_instance_os" {
   description = "Operating system to use. Instead of using your own AMI you could use a provided OS."
-  default     = "centos_7.5"
+  default     = "centos_7.4"
 }
 
 variable "bootstrap_aws_ami" {
@@ -130,6 +130,11 @@ variable "masters_hostname_format" {
   default     = "%[3]s-master%[1]d-%[2]s"
 }
 
+variable "masters_user_data" {
+  description = "[MASTERS] User data to be used on these instances (cloud-init)"
+  default     = ""
+}
+
 variable "private_agents_aws_ami" {
   description = "[PRIVATE AGENTS] AMI to be used"
   default     = ""
@@ -175,6 +180,11 @@ variable "private_agents_hostname_format" {
   default     = "%[3]s-privateagent%[1]d-%[2]s"
 }
 
+variable "private_agents_user_data" {
+  description = "[PRIVATE AGENTS] User data to be used on these instances (cloud-init)"
+  default     = ""
+}
+
 variable "public_agents_aws_ami" {
   description = "[PUBLIC AGENTS] AMI to be used"
   default     = ""
@@ -193,6 +203,11 @@ variable "public_agents_root_volume_size" {
 variable "public_agents_root_volume_type" {
   description = "[PUBLIC AGENTS] Specify the root volume type."
   default     = "gp2"
+}
+
+variable "public_agents_extra_volumes" {
+  description = "[PUBLIC AGENTS] Extra volumes for each public agent"
+  default     = []
 }
 
 variable "public_agents_instance_type" {
@@ -215,9 +230,24 @@ variable "public_agents_hostname_format" {
   default     = "%[3]s-publicagent%[1]d-%[2]s"
 }
 
+variable "public_agents_user_data" {
+  description = "[PUBLIC AGENTS] User data to be used on these instances (cloud-init)"
+  default     = ""
+}
+
 variable "public_agents_additional_ports" {
   description = "List of additional ports allowed for public access on public agents (80 and 443 open by default)"
   default     = []
+}
+
+variable "public_agents_allow_registered" {
+  description = "Allow registered / user ports (1024-49151 see: RFC6335) on public agents public IPs"
+  default     = false
+}
+
+variable "public_agents_allow_dynamic" {
+  description = "Allow dynamic / ephemeral ports (49152-65535 see: RFC6335) on public agents public IPs"
+  default     = false
 }
 
 variable "public_agents_access_ips" {
@@ -252,6 +282,21 @@ variable "additional_private_agent_ips" {
   default     = []
 }
 
+variable "additional_windows_private_agent_ips" {
+  description = "Additional windows private agent IPs"
+  default     = []
+}
+
+variable "additional_windows_private_agent_passwords" {
+  description = "Additional windows private agent passwords to be used for WinRM"
+  default     = []
+}
+
+variable "additional_windows_private_agent_os_user" {
+  description = "Additional windows private agent os user to be used for WinRM"
+  default     = "Administrator"
+}
+
 variable "ansible_bundled_container" {
   default     = "mesosphere/dcos-ansible-bundle:latest"
   description = "Docker container with bundled dcos-ansible and ansible executables"
@@ -260,6 +305,11 @@ variable "ansible_bundled_container" {
 variable "ansible_additional_config" {
   default     = ""
   description = "Add additional config options to ansible. This is getting merged with generated defaults. Do not specify `dcos:`"
+}
+
+variable "ansible_user" {
+  default     = ""
+  description = "The Ansible user that is used to run the Ansible Tasks."
 }
 
 variable "with_replaceable_masters" {
@@ -280,4 +330,19 @@ variable "masters_internal_acm_cert_arn" {
 variable "public_agents_acm_cert_arn" {
   description = "ACM certifacte to be used for the public agents load balancer"
   default     = ""
+}
+
+variable "adminrouter_grpc_proxy_port" {
+  description = ""
+  default     = 12379
+}
+
+variable "open_admin_router" {
+  description = "Open admin router to public (80+443 on load balancer). WARNING: attackers could take over your cluster"
+  default     = false
+}
+
+variable "open_instance_ssh" {
+  description = "Open SSH on instances to public. WARNING: make sure you use a strong SSH key"
+  default     = false
 }

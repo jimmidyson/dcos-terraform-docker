@@ -1,4 +1,3 @@
-# Main Variables
 variable "dcos_variant" {
   description = "Specifies which DC/OS variant it should be: `open` (Open Source) or `ee` (Enterprise Edition)"
   default     = "open"
@@ -10,11 +9,10 @@ variable "bootstrap_private_ip" {
 }
 
 variable "dcos_version" {
-  default     = "1.13.2"
-  description = "Specifies which DC/OS version instruction to use. Options: 1.12.3, 1.11.10, etc. See dcos_download_path or dcos_version tree for a full list."
+  default     = "2.0.0"
+  description = "Specifies which DC/OS version instruction to use. Options: 2.0.0, 1.13.6, 1.12.4, 1.11.12, etc. See dcos_download_path or dcos_version tree for a full list."
 }
 
-# DCOS bootstrap node variables
 variable "dcos_security" {
   default     = ""
   description = "[Enterprise DC/OS] set the security level of DC/OS, either 'strict' or 'permissive'. Default is 'permissive'. (recommended)"
@@ -505,4 +503,14 @@ variable "dcos_package_storage_uri" {
 variable "dcos_enable_mesos_input_plugin" {
   default     = ""
   description = "Indicates whether to enable Telegraf's Mesos input plugin to collect Mesos metrics from Mesos masters and agents. Options: `true` or `false` (optional)"
+}
+
+variable "dcos_download_url_checksum" {
+  description = "Custom DC/OS download URL SHA256 Checksum. Empty string omits checking."
+  default     = ""
+}
+
+variable "dcos_versions_service_url" {
+  default     = "https://versions.d2iq.com"
+  description = "DC/OS Versions Service allows to identify DC/OS versions"
 }

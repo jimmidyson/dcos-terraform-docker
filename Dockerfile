@@ -19,7 +19,8 @@ COPY main.${PROVIDER}.tf main.tf
 COPY variables.${PROVIDER}.tf variables.tf
 COPY dcos_core_variables.${PROVIDER}.tf dcos_core_variables.tf
 COPY outputs_infra_module.${PROVIDER}.tf outputs_infra_module.tf
-COPY outputs.tf helper-variables.tf ./
+COPY outputs.${PROVIDER}.tf outputs.tf
+COPY helper-variables.tf ./
 RUN sed -i "s/__DCOS_TERRAFORM_MODULE_VERSION__/${DCOS_TERRAFORM_MODULE_VERSION}/" main.tf
 RUN terraform init -get=true -get-plugins=true
 
