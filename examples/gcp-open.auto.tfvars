@@ -20,6 +20,6 @@ bootstrap_machine_type = "n1-standard-1"
 
 master_machine_type = "n1-standard-8"
 
-private_agent_machine_type = "n1-standard-8"
+private_agents_machine_type = "n1-standard-8"
 
-public_agent_machine_type = "n1-standard-8"
+public_agents_machine_type = "n1-standard-8"

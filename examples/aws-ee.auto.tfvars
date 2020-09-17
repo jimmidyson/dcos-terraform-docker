@@ -24,6 +24,6 @@ bootstrap_instance_type = "m5.large"
 
 master_instance_type = "m5.2xlarge"
 
-private_agent_instance_type = "m5.2xlarge"
+private_agents_instance_type = "m5.2xlarge"
 
-public_agent_instance_type = "m5.2xlarge"
+public_agents_instance_type = "m5.2xlarge"
